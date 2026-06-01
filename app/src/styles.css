@@ -398,6 +398,7 @@ button:focus-visible {
   width: 30px;
   height: 30px;
   padding: 0;
+  text-decoration: none;
 }
 
 .top-actions {
@@ -457,6 +458,10 @@ button:focus-visible {
   gap: 0;
   position: relative;
   flex: 0 0 auto;
+}
+
+.mobile-download-menu {
+  display: none;
 }
 
 .nav-menu-trigger {
@@ -1263,10 +1268,18 @@ input[type="checkbox"] {
     display: grid;
     grid-column: 1 / -1;
     grid-row: 2;
-    grid-template-columns: minmax(0, 1fr) 26px;
+    grid-template-columns: minmax(0, 1fr) 26px 26px;
     gap: 6px;
     width: 100%;
     min-width: 0;
+  }
+
+  .desktop-download-menu {
+    display: none;
+  }
+
+  .mobile-download-menu {
+    display: inline-flex;
   }
 
   .compact-brand {

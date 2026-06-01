@@ -40,6 +40,7 @@ const ImplicitViewport = lazy(() => (
 
 const DEFAULT_TEMPLATE_ID = "mobius-strip";
 const BRAND_TITLE = "implicit.js";
+const GITHUB_REPO_URL = "https://github.com/earthtojake/implicit.js";
 const SOURCE_STORAGE_KEY = "implicitjs:source";
 const TEMPLATE_STORAGE_KEY = "implicitjs:template";
 const CUSTOM_CODE_STORAGE_KEY = "implicitjs:custom-code";
@@ -463,6 +464,84 @@ function IconButton({ children, title, className = "", ...props }) {
     <button className={`icon-button ${className}`} title={title} aria-label={title} {...props}>
       {children}
     </button>
+  );
+}
+
+function IconLink({ children, title, className = "", ...props }) {
+  return (
+    <a className={`icon-button ${className}`} title={title} aria-label={title} {...props}>
+      {children}
+    </a>
+  );
+}
+
+function GitHubMark({ size = 14 }) {
+  return (
+    <svg aria-hidden="true" focusable="false" height={size} viewBox="0 0 24 24" width={size}>
+      <path
+        d="M12 2C6.48 2 2 6.58 2 12.22c0 4.51 2.87 8.33 6.84 9.68.5.1.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.36-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.39 9.39 0 0 1 12 6.91c.85 0 1.7.12 2.5.34 1.9-1.33 2.74-1.05 2.74-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.81 0 .27.18.59.69.49A10.12 10.12 0 0 0 22 12.22C22 6.58 17.52 2 12 2Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+function DownloadMenu({ className = "", exportDisabled, onDownloadPng, onDownloadSource, onExport }) {
+  const closeMenu = (event) => {
+    event.currentTarget.closest("details").open = false;
+  };
+
+  return (
+    <details className={`nav-menu download-menu ${className}`}>
+      <summary
+        aria-label="Downloads"
+        className="nav-menu-trigger"
+        title="Downloads"
+      >
+        <Download size={14} />
+      </summary>
+      <div className="nav-menu-content" role="menu">
+        <button
+          role="menuitem"
+          type="button"
+          onClick={(event) => {
+            closeMenu(event);
+            onDownloadSource();
+          }}
+        >
+          Source
+        </button>
+        <button
+          disabled={exportDisabled}
+          role="menuitem"
+          type="button"
+          onClick={(event) => {
+            closeMenu(event);
+            onDownloadPng();
+          }}
+        >
+          PNG
+        </button>
+        {[
+          ["glb", "GLB"],
+          ["3mf", "3MF"],
+          ["stl", "STL"]
+        ].map(([format, label]) => (
+          <button
+            disabled={exportDisabled}
+            key={format}
+            role="menuitem"
+            type="button"
+            onClick={(event) => {
+              closeMenu(event);
+              onExport(format);
+            }}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+    </details>
   );
 }
 
@@ -1330,8 +1409,7 @@ export default function App() {
   const liveModel = liveResult.model;
   const previewError = compileState === "error" ? compileError : liveResult.error;
   const controlsSourceError = compileState === "error" && compileErrorType === "javascript" ? compileError : "";
-  const previewStatus = previewError ? "error" : compileState;
-  const previewModel = previewBooted && previewStatus === "ready" ? liveModel : null;
+  const previewModel = previewBooted && !previewError ? liveModel : null;
 
   const handleExportSettingChange = useCallback((id, value) => {
     setExportSettings((current) => ({
@@ -1498,6 +1576,13 @@ export default function App() {
             templates={templates}
             onTemplateChange={handleTemplateChange}
           />
+          <DownloadMenu
+            className="mobile-download-menu"
+            exportDisabled={exportDisabled}
+            onDownloadPng={handleDownloadPng}
+            onDownloadSource={handleDownloadSource}
+            onExport={handleExport}
+          />
           <IconButton
             className="nav-icon-button"
             title="New empty source"
@@ -1507,71 +1592,22 @@ export default function App() {
           </IconButton>
         </div>
         <div className="top-actions">
-          <details className="nav-menu download-menu">
-            <summary
-              aria-label="Downloads"
-              className="nav-menu-trigger"
-              title="Downloads"
-            >
-              <Download size={14} />
-            </summary>
-            <div className="nav-menu-content" role="menu">
-              <button
-                role="menuitem"
-                type="button"
-                onClick={(event) => {
-                  event.currentTarget.closest("details").open = false;
-                  handleDownloadSource();
-                }}
-              >
-                Source
-              </button>
-              <button
-                disabled={exportDisabled}
-                role="menuitem"
-                type="button"
-                onClick={(event) => {
-                  event.currentTarget.closest("details").open = false;
-                  handleDownloadPng();
-                }}
-              >
-                PNG
-              </button>
-              <button
-                disabled={exportDisabled}
-                role="menuitem"
-                type="button"
-                onClick={(event) => {
-                  event.currentTarget.closest("details").open = false;
-                  handleExport("glb");
-                }}
-              >
-                GLB
-              </button>
-              <button
-                disabled={exportDisabled}
-                role="menuitem"
-                type="button"
-                onClick={(event) => {
-                  event.currentTarget.closest("details").open = false;
-                  handleExport("3mf");
-                }}
-              >
-                3MF
-              </button>
-              <button
-                disabled={exportDisabled}
-                role="menuitem"
-                type="button"
-                onClick={(event) => {
-                  event.currentTarget.closest("details").open = false;
-                  handleExport("stl");
-                }}
-              >
-                STL
-              </button>
-            </div>
-          </details>
+          <DownloadMenu
+            className="desktop-download-menu"
+            exportDisabled={exportDisabled}
+            onDownloadPng={handleDownloadPng}
+            onDownloadSource={handleDownloadSource}
+            onExport={handleExport}
+          />
+          <IconLink
+            className="nav-icon-button"
+            href={GITHUB_REPO_URL}
+            rel="noreferrer"
+            target="_blank"
+            title="Open GitHub repository"
+          >
+            <GitHubMark size={14} />
+          </IconLink>
           <IconButton
             className="nav-icon-button"
             title={themeMode === "dark" ? "Switch to light mode" : "Switch to dark mode"}

@@ -20,6 +20,8 @@ const HEAVY_LOW_QUALITY_STEP_PIXEL_BUDGET = 8_000_000;
 const HEAVY_SHADER_SOURCE_LENGTH = 6_500;
 const STARTUP_QUALITY_MS = 900;
 const BROWSER_WHEEL_ZOOM_FACTOR = 1.25;
+const TOUCH_ZOOM_SPEED_SCALE = 0.14;
+const MAX_TOUCH_ZOOM_SPEED = 1.8;
 const VIEWPORT_FRAME_MARGIN = 1.05;
 const VIEWPORT_CAMERA_ZOOM = 1.5;
 const SNAPSHOT_MAX_LONG_EDGE = 1800;
@@ -124,6 +126,14 @@ function browserProportionalZoomSpeed() {
   return devicePixelRatio * Math.log(BROWSER_WHEEL_ZOOM_FACTOR) / -Math.log(0.95);
 }
 
+function browserZoomSpeed() {
+  const wheelZoomSpeed = browserProportionalZoomSpeed();
+  const coarsePointer = window.matchMedia?.("(pointer: coarse), (hover: none)")?.matches === true;
+  return coarsePointer
+    ? Math.min(wheelZoomSpeed * TOUCH_ZOOM_SPEED_SCALE, MAX_TOUCH_ZOOM_SPEED)
+    : wheelZoomSpeed;
+}
+
 function resizeRuntime(runtime, container, graphics) {
   const runtimeGraphics = graphicsForRuntime(runtime, graphics);
   const rect = container.getBoundingClientRect();
@@ -185,7 +195,7 @@ function installOrbitControls(runtime, container, model) {
   const controls = new OrbitControls(runtime.camera, runtime.renderer.domElement);
   controls.enableDamping = true;
   controls.dampingFactor = 0.12;
-  controls.zoomSpeed = browserProportionalZoomSpeed();
+  controls.zoomSpeed = browserZoomSpeed();
   controls.screenSpacePanning = true;
   controls.target.set(...model.center);
   controls.addEventListener("change", () => {
