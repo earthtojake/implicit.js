@@ -1,5 +1,5 @@
 {
-  "installCommand": "npm --prefix app install",
+  "installCommand": "npm --prefix package install && npm --prefix app install",
   "buildCommand": "npm --prefix app run build",
   "outputDirectory": "app/dist",
   "rewrites": [
