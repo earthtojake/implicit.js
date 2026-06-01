@@ -1,0 +1,248 @@
+[
+  {
+    "id": "mobius-strip",
+    "label": "Mobius strip",
+    "file": "mobius-strip.implicit.js",
+    "description": "Default. A parameterized strip with a half twist and animated band controls."
+  },
+  {
+    "id": "planetary-gear",
+    "label": "Planetary gear",
+    "file": "planetary-gear.implicit.js",
+    "description": "A colorful gear train with mesh controls and orbit animation."
+  },
+  {
+    "id": "klein-bottle-immersion",
+    "label": "Klein bottle immersion",
+    "file": "klein-bottle-immersion.implicit.js",
+    "description": "An immersed Klein bottle shell with neck and bulb controls."
+  },
+  {
+    "id": "mandelbulb-distance-estimate",
+    "label": "Mandelbulb fractal",
+    "file": "mandelbulb-distance-estimate.implicit.js",
+    "description": "A distance-estimated fractal with recursive detail controls and warm highlight coloring."
+  },
+  {
+    "id": "boys-surface-sculpture",
+    "label": "Boys surface",
+    "file": "boys-surface-sculpture.implicit.js",
+    "description": "A compact non-orientable mathematical sculpture with animated lobes and folds."
+  },
+  {
+    "id": "hilbert-curve-3d",
+    "label": "3D Hilbert curve",
+    "file": "hilbert-curve-3d.implicit.js",
+    "description": "A true order-2 3D Hilbert traversal through a 4x4x4 lattice, thickened into a rounded tube."
+  },
+  {
+    "id": "menger-sponge",
+    "label": "Menger sponge",
+    "file": "menger-sponge.implicit.js",
+    "description": "A recursive cubic sponge with orthogonal voids and softened printable interior edges."
+  },
+  {
+    "id": "jerusalem-cube",
+    "label": "Jerusalem cube",
+    "file": "jerusalem-cube.implicit.js",
+    "description": "A Jerusalem-cube-style fractal with nested orthogonal cutouts and rounded internal corners."
+  },
+  {
+    "id": "dragon-folding-path-3d",
+    "label": "3D dragon folding path",
+    "file": "dragon-folding-path-3d.implicit.js",
+    "description": "A sculptural 3D recursive folding path inspired by dragon-curve turns."
+  },
+  {
+    "id": "dragon-curve-ribbon",
+    "label": "Dragon curve ribbon",
+    "file": "dragon-curve-ribbon.implicit.js",
+    "description": "A recursively folded dragon-curve-inspired ribbon, thickened into a smooth printable strip."
+  },
+  {
+    "id": "gosper-curve-tube",
+    "label": "Gosper curve tube",
+    "file": "gosper-curve-tube.implicit.js",
+    "description": "A hexagonal Gosper-flow inspired tube with smooth recursive-looking bends."
+  },
+  {
+    "id": "gyroid-unit-cell",
+    "label": "Gyroid lattice",
+    "file": "gyroid-unit-cell.implicit.js",
+    "description": "A periodic gyroid shell clipped into a cubic cell with wall-thickness controls."
+  },
+  {
+    "id": "voronoi-foam-lattice",
+    "label": "Voronoi foam",
+    "file": "voronoi-foam-lattice.implicit.js",
+    "description": "A bounded cellular implicit foam with rounded cell-wall transitions."
+  },
+  {
+    "id": "trefoil-torus-knot-tube",
+    "label": "Trefoil knot tube",
+    "file": "trefoil-torus-knot-tube.implicit.js",
+    "description": "A closed torus-knot tube with path and tube controls."
+  },
+  {
+    "id": "schwarz-d-diamond-cell",
+    "label": "Schwarz D surface",
+    "file": "schwarz-d-diamond-cell.implicit.js",
+    "description": "A Schwarz diamond minimal surface with uniform wall thickness and animated channel blending."
+  },
+  {
+    "id": "neovius-porosity-cell",
+    "label": "Neovius surface",
+    "file": "neovius-porosity-cell.implicit.js",
+    "description": "A Neovius periodic shell emphasizing complex internal channels and structural porosity."
+  },
+  {
+    "id": "chmutov-node-field",
+    "label": "Chmutov surface",
+    "file": "chmutov-node-field.implicit.js",
+    "description": "A high-order Chmutov-style algebraic surface with many animated nodes."
+  },
+  {
+    "id": "tanglecube-lobed-tunnels",
+    "label": "Tanglecube",
+    "file": "tanglecube-lobed-tunnels.implicit.js",
+    "description": "A lobed algebraic tanglecube with cubic symmetry and smooth internal tunnels."
+  },
+  {
+    "id": "koch-snowflake-extrusion",
+    "label": "Koch snowflake extrusion",
+    "file": "koch-snowflake-extrusion.implicit.js",
+    "description": "A rounded extruded Koch-snowflake approximation with controllable recursive edge detail."
+  },
+  {
+    "id": "pythagoras-tree-solid",
+    "label": "Pythagoras tree solid",
+    "file": "pythagoras-tree-solid.implicit.js",
+    "description": "A stable 3D Pythagoras tree made from recursively arranged softened blocks."
+  },
+  {
+    "id": "moore-curve-loop",
+    "label": "Moore curve loop",
+    "file": "moore-curve-loop.implicit.js",
+    "description": "A closed Moore space-filling loop rendered as a continuous rounded tube."
+  },
+  {
+    "id": "peano-curve-solid",
+    "label": "Peano curve solid",
+    "file": "peano-curve-solid.implicit.js",
+    "description": "A dense Peano-inspired recursive subdivision path thickened into a rounded solid beam."
+  },
+  {
+    "id": "morton-z-order-curve",
+    "label": "Morton Z-order curve",
+    "file": "morton-z-order-curve.implicit.js",
+    "description": "A stepped 3D Z-order traversal through a 4x4x4 grid, thickened into a printable beam network."
+  },
+  {
+    "id": "hilbert-curve-block",
+    "label": "2D Hilbert curve block",
+    "file": "hilbert-curve-block.implicit.js",
+    "description": "A true order-3 planar Hilbert curve cut into a solid plate with a raised colored trace."
+  },
+  {
+    "id": "h-tree-solid",
+    "label": "H-tree solid",
+    "file": "h-tree-solid.implicit.js",
+    "description": "A recursive H-tree beam structure for branching structural CAD demos."
+  },
+  {
+    "id": "genus-2-double-torus",
+    "label": "Genus-2 double torus",
+    "file": "genus-2-double-torus.implicit.js",
+    "description": "Two smooth fused handles with blend and spacing controls."
+  },
+  {
+    "id": "metaball-molecule-cluster",
+    "label": "Metaball cluster",
+    "file": "metaball-molecule-cluster.implicit.js",
+    "description": "Seven smoothly blended sphere fields."
+  },
+  {
+    "id": "roman-surface-section",
+    "label": "Roman surface",
+    "file": "roman-surface-section.implicit.js",
+    "description": "Steiner Roman surface with animated section-plane visualization."
+  },
+  {
+    "id": "enneper-curvature-patch",
+    "label": "Enneper surface",
+    "file": "enneper-curvature-patch.implicit.js",
+    "description": "A thickened Enneper-inspired minimal patch with contour and curvature coloring."
+  },
+  {
+    "id": "helicoid-printable-ribbon",
+    "label": "Helicoid ribbon",
+    "file": "helicoid-printable-ribbon.implicit.js",
+    "description": "A pitch-controlled helicoid thickened into a printable screw-like ribbon."
+  },
+  {
+    "id": "catenoid-ring-bridge",
+    "label": "Catenoid bridge",
+    "file": "catenoid-ring-bridge.implicit.js",
+    "description": "A catenoid minimal surface between two rings with animated neck and spacing controls."
+  },
+  {
+    "id": "schwarz-p-unit-cell",
+    "label": "Schwarz P surface",
+    "file": "schwarz-p-unit-cell.implicit.js",
+    "description": "A Schwarz primitive TPMS cell with shell-thickness controls for porous material demos."
+  },
+  {
+    "id": "superquadric-rounded-cube",
+    "label": "Superellipsoid morph",
+    "file": "superquadric-rounded-cube.implicit.js",
+    "description": "A tunable exponent form morphing between sphere, rounded box, and cube-like silhouettes."
+  },
+  {
+    "id": "torus-boolean-lab",
+    "label": "Torus boolean lab",
+    "file": "torus-boolean-lab.implicit.js",
+    "description": "An adjustable torus with smooth union beads, subtractive cuts, and animated boolean controls."
+  },
+  {
+    "id": "sierpinski-tetrahedron",
+    "label": "Sierpinski tetrahedron",
+    "file": "sierpinski-tetrahedron.implicit.js",
+    "description": "A finite-depth tetrahedral fractal approximation."
+  },
+  {
+    "id": "sierpinski-arrowhead-curve",
+    "label": "Sierpinski arrowhead curve",
+    "file": "sierpinski-arrowhead-curve.implicit.js",
+    "description": "A raised recursive triangular arrowhead curve with sharp self-similar structure."
+  },
+  {
+    "id": "whitney-umbrella",
+    "label": "Whitney umbrella",
+    "file": "whitney-umbrella.implicit.js",
+    "description": "A bounded singular surface with shell thickness controls."
+  },
+  {
+    "id": "sphere-boolean-cuts",
+    "label": "Sphere boolean cuts",
+    "file": "sphere-boolean-cuts.implicit.js",
+    "description": "A clean SDF sphere with animated slice and bore cuts, bevel controls, and procedural surface color."
+  },
+  {
+    "id": "rounded-orb",
+    "label": "Rounded orb",
+    "file": "rounded-orb.implicit.js",
+    "description": "A blended sphere, base, and bore with procedural color."
+  },
+  {
+    "id": "gyroid-window",
+    "label": "Gyroid window",
+    "file": "gyroid-window.implicit.js",
+    "description": "A smaller periodic window into the gyroid field."
+  },
+  {
+    "id": "parametric-pulse",
+    "label": "Parametric pulse",
+    "file": "parametric-pulse.implicit.js",
+    "description": "A compact animation stress example for live parameter motion."
+  }
+]
