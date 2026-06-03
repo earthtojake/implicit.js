@@ -6,29 +6,42 @@ float sdSegment(vec3 p, vec3 a, vec3 b) {
   return length(pa - ba * h);
 }
 
-float smoothMin(float a, float b, float k) {
-  float h = clamp(0.5 + 0.5 * (b - a) / max(k, 0.0001), 0.0, 1.0);
-  return mix(b, a, h) - k * h * (1.0 - h);
-}
-
 float bitAt(float v, float place) {
   return mod(floor(v / place), 2.0);
 }
 
-vec3 mortonPoint(float i) {
-  float x = bitAt(i, 1.0) + bitAt(i, 8.0) * 2.0;
-  float y = bitAt(i, 2.0) + bitAt(i, 16.0) * 2.0;
-  float z = bitAt(i, 4.0) + bitAt(i, 32.0) * 2.0;
-  return (vec3(x, y, z) - vec3(1.5)) * spacing;
+vec2 mortonLayerPoint(float i) {
+  float x = bitAt(i, 1.0) + bitAt(i, 4.0) * 2.0;
+  float y = bitAt(i, 2.0) + bitAt(i, 8.0) * 2.0;
+  return (vec2(x, y) - vec2(1.5)) * spacing;
+}
+
+float layerZ(float layer) {
+  return (layer - 1.5) * spacing;
+}
+
+float layerPathDistance(vec3 p, float layer) {
+  float z = layerZ(layer);
+  float d = 100000.0;
+  for (int i = 0; i < 15; i += 1) {
+    float fi = float(i);
+    d = min(d, sdSegment(p, vec3(mortonLayerPoint(fi), z), vec3(mortonLayerPoint(fi + 1.0), z)));
+  }
+  return d;
 }
 
 float sdf(vec3 p) {
   float d = 100000.0;
-  for (int i = 0; i < 63; i += 1) {
-    float fi = float(i);
-    d = smoothMin(d, sdSegment(p, mortonPoint(fi), mortonPoint(fi + 1.0)), cornerBlend);
+  for (int i = 0; i < 4; i += 1) {
+    d = min(d, layerPathDistance(p, float(i)));
   }
-  return d - beamRadius;
+  vec2 layerEnd = mortonLayerPoint(15.0);
+  vec2 layerStart = mortonLayerPoint(0.0);
+  for (int i = 0; i < 3; i += 1) {
+    float layer = float(i);
+    d = min(d, sdSegment(p, vec3(layerEnd, layerZ(layer)), vec3(layerStart, layerZ(layer + 1.0))));
+  }
+  return d - (beamRadius + cornerBlend * 0.12);
 }
 
 vec3 color(vec3 p, vec3 normal) {
@@ -67,11 +80,11 @@ export default {
     return [[-extent, -extent, -extent], [extent, extent, extent]];
   },
   render: ({ params }) => ({
-    steps: 220,
-    stepScale: 0.64,
-    maxStep: Math.max(params.beamRadius * 3.2, 1.1),
-    epsilon: Math.max(params.beamRadius * 0.012, 0.005),
-    normalEpsilon: Math.max(params.beamRadius * 0.075, 0.035)
+    steps: 108,
+    stepScale: 0.78,
+    maxStep: Math.max(params.beamRadius * 4.2, 1.6),
+    epsilon: Math.max(params.beamRadius * 0.018, 0.008),
+    normalEpsilon: Math.max(params.beamRadius * 0.09, 0.045)
   }),
   glsl: GLSL
 };

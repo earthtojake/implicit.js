@@ -13,7 +13,7 @@ float menger(vec3 p) {
       vec3 a = mod(q * scale + 1.0, 2.0) - 1.0;
       scale *= 3.0;
       vec3 r = abs(1.0 - 3.0 * abs(a));
-      float cross = min(max(r.x, r.y), min(max(r.y, r.z), max(r.z, r.x))) / scale;
+      float cross = (min(max(r.x, r.y), min(max(r.y, r.z), max(r.z, r.x))) - 1.0) / scale;
       d = max(d, cross);
     }
   }

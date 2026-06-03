@@ -94,9 +94,10 @@ float channelField(vec2 p) {
 
 float sdf(vec3 p) {
   float extent = cellSize * 4.1;
+  float path = channelField(p.xy);
   float plate = sdBox(p + vec3(0.0, 0.0, plateThickness * 0.18), vec3(extent, extent, plateThickness * 0.42));
-  float channel = max(channelField(p.xy) - channelWidth, abs(p.z - plateThickness * 0.18) - plateThickness * 0.34);
-  float raisedRim = max(channelField(p.xy) - channelWidth * 1.35, abs(p.z - plateThickness * 0.42) - liftHeight * 0.36);
+  float channel = max(path - channelWidth, abs(p.z - plateThickness * 0.18) - plateThickness * 0.34);
+  float raisedRim = max(path - channelWidth * 1.35, abs(p.z - plateThickness * 0.42) - liftHeight * 0.36);
   return min(max(plate, -channel), raisedRim);
 }
 
@@ -140,11 +141,11 @@ export default {
     return [[-extent, -extent, -z], [extent, extent, z]];
   },
   render: ({ params }) => ({
-    steps: 190,
-    stepScale: 0.7,
-    maxStep: Math.max(params.channelWidth * 3.5, 1.1),
-    epsilon: Math.max(params.channelWidth * 0.012, 0.004),
-    normalEpsilon: Math.max(params.channelWidth * 0.08, 0.035)
+    steps: 112,
+    stepScale: 0.92,
+    maxStep: Math.max(params.channelWidth * 6.5, 2.2),
+    epsilon: Math.max(params.channelWidth * 0.028, 0.012),
+    normalEpsilon: Math.max(params.channelWidth * 0.11, 0.06)
   }),
   glsl: GLSL
 };
